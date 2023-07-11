@@ -7,7 +7,7 @@ def printTable (group_name: str, sorted_teams: list[Team]):
     team_total_wins = [team["total_wins"] for team in sorted_teams]
     team_total_drawn = [team["total_drawn"] for team in sorted_teams]
     team_total_losses = [team["total_losses"] for team in sorted_teams]
-    team_goals_difference = [ f"+{team['goals_difference']}" if team["goals_difference"] > 0 else team["goals_difference"] for team in sorted_teams]
+    team_goals_difference = [f"+{team['goals_difference']}" if team["goals_difference"] > 0 else team["goals_difference"] for team in sorted_teams]
     team_points_earned = [team["points_earned"] for team in sorted_teams]
 
     df = pd.DataFrame(
