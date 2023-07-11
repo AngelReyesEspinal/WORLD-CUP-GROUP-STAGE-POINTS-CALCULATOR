@@ -1,5 +1,4 @@
 import pandas as pd
-
 from models.team import Team
 
 def printTable (group_name: str, sorted_teams: list[Team]):
