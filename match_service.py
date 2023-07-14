@@ -35,17 +35,23 @@ def sort_teams_by_group(matches_by_group):
         home_team = create_team(match, MATCH_KEYS["homeTeam"], MATCH_KEYS["homeTeamScore"], MATCH_KEYS["awayTeamScore"])
         away_team = create_team(match, MATCH_KEYS["awayTeam"], MATCH_KEYS["awayTeamScore"], MATCH_KEYS["homeTeamScore"])
 
-        # HOME
-        if any([team for team in group.teams if team['name'] == match[MATCH_KEYS["homeTeam"]]]):
-            group.update_team(home_team)
-        else:
-            group.add_team(home_team)
+        game_teams = [
+            {
+                "position": "homeTeam",
+                "data": home_team
+            },
+            {
+                "position": "awayTeam",
+                "data": away_team
+            }
+        ]
 
-        # AWAY 
-        if any([team for team in group.teams if team['name'] == match[MATCH_KEYS["awayTeam"]]]):
-            group.update_team(away_team)
-        else:
-            group.add_team(away_team)
+        for game_team in game_teams:
+            if any([team for team in group.teams if team['name'] == match[MATCH_KEYS[game_team['position']]]]):
+                group.update_team(game_team['data'])
+            else:
+                group.add_team(game_team['data'])
+
 
     sorted_arr = sorted(group.teams, key=lambda x: x["points_earned"], reverse=True)
     return sorted_arr

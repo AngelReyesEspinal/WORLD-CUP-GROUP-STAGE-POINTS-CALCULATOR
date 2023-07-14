@@ -1,7 +1,7 @@
 import pandas as pd
 from models.team import Team
 
-def printTable (group_name: str, sorted_teams: list[Team]):
+def print_table (group_name: str, sorted_teams: list[Team]):
     team_names = [team["name"] for team in sorted_teams]
     team_total_games_played = [team["total_wins"] + team["total_losses"] + team["total_drawn"] for team in sorted_teams]
     team_total_wins = [team["total_wins"] for team in sorted_teams]
